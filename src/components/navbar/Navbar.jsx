@@ -1,6 +1,9 @@
 import React from "react";
 import DarkModeToggle from "../darkModeToggleButton/DarkModeToggle";
 import Link from "next/link";
+import Menu from "../menu/Menu";
+import { GiMushroomHouse } from 'react-icons/gi';
+import { CgProfile } from 'react-icons/cg';
 
 const links = [
   {
@@ -14,33 +17,35 @@ const links = [
     id: 4,
   },
   {
-    title: "Profile",
-    url: "/profile",
-    id: 5,
-  },
-  {
-    title: "About",
-    url: "/about",
+    title: "Pricing",
+    url: "/pricing",
     id: 1,
   },
   {
     title: "Contact",
     url: "/contact",
     id: 2,
-  }
+  },
+  {
+    title: <>Profile <CgProfile className="text-2xl"/></>,
+    url: "/profile",
+    id: 5,
+  },
 ];
 
 const Navbar = () => {
   return (
-    <div className=" h-12 lg:h-24 p-2 lg:p-4 lg:px-12 flex items-center justify-between lg:text-lg hover:dark:bg-slate-700 hover:bg-slate-200 transition-all duration-75 ease-linear">
-      Navbar 
-      <div className="flex items-center justify-between w-1/3"><DarkModeToggle />
-      {
-        links.map((link)=>(
-          <Link href={link.url} key={link.id}>{link.title}</Link>
-        ))
-      }
+    <div className=" h-12 lg:h-24 p-2 lg:p-4 lg:px-12 flex items-center justify-between lg:text-lg hover:dark:bg-slate-700 dark:hover:text-gray-400 hover:bg-slate-200 transition-all duration-75 ease-linear">
+      <Link href="/" className="flex items-center gap-2 text-2xl cursor-pointer font-extrabold ">CrowState <GiMushroomHouse/></Link>{" "}
+      <div className="hidden lg:flex items-center justify-between w-1/3">
+        <DarkModeToggle />
+        {links.map((link) => (
+          <Link href={link.url} key={link.id} className="flex items-start gap-1">
+            {link.title}
+          </Link>
+        ))}
       </div>
+      <Menu />
     </div>
   );
 };
